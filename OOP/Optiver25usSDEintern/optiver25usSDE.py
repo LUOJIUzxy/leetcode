@@ -1,6 +1,59 @@
 class SupermarketCheckout:
     def __init__(self):
         self.lines = {}  # Key: LineNumber, Value: Queue of (CustomerId, NumItems)
+        
+    def on_customer_enter(self, customer_id, line_number, num_items):
+        # TODO Implement
+        pass
+
+    def on_basket_change(self, customer_id, new_num_items):
+        # TODO Implement
+        pass
+
+    def on_line_service(self, line_number, num_processed_items):
+        # TODO Implement
+        pass
+
+    def on_lines_service(self):
+        # TODO Implement
+
+        pass
+
+    def on_customer_exit(self, customer_id):
+        # Don't change this implementation.
+        print(customer_id)
+
+
+if __name__ == "__main__":
+    import sys
+
+    checkout_tracker = SupermarketCheckout()
+    line = sys.stdin.readline().split()
+    n = int(line[0])
+    for _ in range(n):
+        line = sys.stdin.readline().split()
+        if line[0] == "CustomerEnter":
+            # get attributes: customer id, line number, and number of items
+            customer_id = int(line[1])
+            line_number = int(line[2])
+            num_items = int(line[3])
+            checkout_tracker.on_customer_enter(customer_id, line_number, num_items)
+        elif line[0] == "BasketChange":
+            customer_id = int(line[1])
+            new_num_items = int(line[2])
+            checkout_tracker.on_basket_change(customer_id, new_num_items)
+        elif line[0] == "LineService":
+            line_number = int(line[1])
+            num_processed_items = int(line[2])
+            checkout_tracker.on_line_service(line_number, num_processed_items)
+        elif line[0] == "LinesService":
+            checkout_tracker.on_lines_service()
+        else:
+            raise Exception("Malformed input!")
+
+class SupermarketCheckout:
+    def __init__(self):
+        self.lines = {}  # Key: LineNumber, Value: Queue of (CustomerId, NumItems)
 
     def on_customer_enter(self, customer_id, line_number, num_items):
         # TODO Implement

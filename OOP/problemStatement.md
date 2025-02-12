@@ -22,7 +22,7 @@ You will receive a stream of N instructions. Each instruction can be one of the 
 
 Attributes: CustomerId, LineNumber, NumItems.
 
-2. BasketChange: Indicates that a customer changed the number of items in their basket.
+2. BasketChange: Indicates that a customer **changed** the number of items in their basket.
 
 Attributes: CustomerId, NewNumItems.
 
@@ -125,7 +125,7 @@ LineService 1 5
 ### Explanation:
 - After the first `LineService`, customer `123` has 1 item left.
 
-- Customer `123` increases their basket size, moving to the back of the line.
+- Customer `123` increases their basket size（6-5=1）, moving to the back of the line.
 
 - During the next `LineService`, customer `3` is checked out first, followed by customer `123`.
 
