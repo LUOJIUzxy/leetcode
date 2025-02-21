@@ -2,6 +2,9 @@
 # root_array = [0, 0, 0, 1, 4, 5, 5, 5, 4, 9]
 root_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+
+# Add a constructor here for the root(parent)
+
 # find the head of a node
 def find(node_index):
     node_value = root_array[node_index]
@@ -34,6 +37,13 @@ def union(edge_tuple):
     # print(vertice1)
     root_array[vertice2] = vertice1
     print(root_array[vertice2])
+
+def connect(node1_index, node2_index):
+    if node1_index < node2_index:
+        # set node2 as the parent node of node1
+        parent_of_node1 = find(node1_index)
+        # and set the parent node of node 1 's parent to node2, so all the children nodes of it would have node2 as parent as well
+        root_array[parent_of_node1] = node2_index
     
 
 if __name__ == "__main__":
@@ -46,8 +56,13 @@ if __name__ == "__main__":
         union(tuple)
     print(root_array)
 
-    print(find(3))
+    #print(find(3))
 
     vertices_tbchecked = {(0, 3), (1, 5), (7, 8)}
+    for vertices in vertices_tbchecked:
+        print(is_connected(vertices[0], vertices[1]))
+
+    connect(7, 8)
+    vertices_tbchecked = {(7, 8), (4, 6), (8, 5)}
     for vertices in vertices_tbchecked:
         print(is_connected(vertices[0], vertices[1]))
