@@ -5,9 +5,11 @@
 class QuickUnion:
     # Add a constructor here for the root(parent)
     def __init__(self, size) -> None:
-        self.root_array = [0] * size
-        for i in range(size):
-            self.root_array[i] = i
+        # self.root_array = [0] * size
+        # for i in range(size):
+        #     self.root_array[i] = i
+        
+        self.root_array = [i for i in range(size)]
 
     # find the head of a node
     def find(self, node_index):
@@ -19,13 +21,15 @@ class QuickUnion:
             return self.find(self.root_array[node_value])
         
     def is_connected(self, node1_index, node2_index):
-        root_index1 = self.find(node1_index)
-        root_index2 = self.find(node2_index)
+        # root_index1 = self.find(node1_index)
+        # root_index2 = self.find(node2_index)
 
-        if root_index1 == root_index2:
-            return True
-        else:
-            return False
+        # if root_index1 == root_index2:
+        #     return True
+        # else:
+        #     return False
+        
+        return self.find(node1_index) == self.find(node2_index)
 
     # input is two-element set
     def union(self, edge_tuple):
