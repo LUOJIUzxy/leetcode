@@ -40,18 +40,16 @@ class QuickUnion:
 
     # input is two-element set
     def union(self, edge_tuple):
-        if edge_tuple[0] < edge_tuple[1]:
-            vertice1 = edge_tuple[0]
-            vertice2 = edge_tuple[1]
-        else:
-            vertice1 = edge_tuple[1]
-            vertice2 = edge_tuple[0]
-
-        # if root_array[vertice1] == vertice1:
-        #     root_array[vertice1] = vertice1
-        # print(vertice1)
-        self.root_array[vertice2] = vertice1
-        print(self.root_array[vertice2])
+        rootX = self.find(edge_tuple[0])
+        rootY = self.find(edge_tuple[1])
+        if rootX != rootY:
+            if self.rank[rootX] > self.rank[rootY]:
+                self.root_array[rootY] = rootX
+            elif self.rank[rootX] < self.rank[rootY]:
+                self.root_array[rootX] = rootY
+            else:
+                self.root_array[rootY] = rootX
+                self.rank[rootX] += 1
 
     def connect(self, node1_index, node2_index):
         # choose the higher rank as the root node
@@ -87,6 +85,6 @@ if __name__ == "__main__":
         print(quickUnion.is_connected(vertices[0], vertices[1]))
 
     quickUnion.connect(0, 8)
-    vertices_tbchecked = {(7, 8), (4, 6), (8, 5)}
+    vertices_tbchecked = {(1, 8), (4, 6), (8, 5)}
     for vertices in vertices_tbchecked:
         print(quickUnion.is_connected(vertices[0], vertices[1]))
