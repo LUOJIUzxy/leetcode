@@ -48,6 +48,7 @@ class disjointSet:
         elif self.rank_array[root1] == self.rank_array[root2]:
             self.root_array[root2] = root1
             self.rank_array[root1] += 1
+            #print(self.rank_array[root1])
     
     def findCircleNum(self) -> int:
         circleNum = 1
@@ -56,15 +57,20 @@ class disjointSet:
             for j in range(i + 1, self.number_of_N):
                 if row[j] == 1:
                     self.union(i, j)
-
+                    # print(self.root_array)
 
             
-        for i in self.root_array:
+        for i, value in enumerate(self.root_array):
             # Get the real root values for every index in the parent array   
-            self.root_array[i] = self.find(i)
+            root = self.find(i)
+            #print(root)
+            self.root_array[i] = root
 
-            if self.root_array[i] != self.root_array[0]:
-                circleNum += 1
+
+        unique_set = set(self.root_array)
+        circleNum = len(unique_set)
+        # Check how many different numbers are there in 
+            
             
         return circleNum
     
