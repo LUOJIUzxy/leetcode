@@ -53,6 +53,7 @@ class disjointSet:
     def findCircleNum(self) -> int:
         circleNum = 1
 
+        # read from inputs and buld the graph
         for i, row in enumerate(self.isConnected):
             for j in range(i + 1, self.number_of_N):
                 if row[j] == 1:
@@ -66,7 +67,7 @@ class disjointSet:
             #print(root)
             self.root_array[i] = root
 
-
+        # Get the unique numbers of root array
         unique_set = set(self.root_array)
         circleNum = len(unique_set)
         # Check how many different numbers are there in 
