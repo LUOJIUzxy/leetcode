@@ -4,6 +4,7 @@ codes for leetcode exercises
 ## Data Structures
 
 ### Heap 
+- Priority Queue
 - A complete binary tree
 - Value of each node must be no greater than (or no less than) the value of its child nodes
 - Time Complexity
