@@ -53,17 +53,17 @@ class MinHeap:
     # O(logN)
     # Function to add an element
     def add(self, element):
-        self.realSize += 1
+        self.heapSize += 1
         # If the number of elements in the Heap exceeds the preset heapSize
         # print "Added too many elements" and return
-        if self.realSize > self.heapSize:
-            print("Added too many elements!")
-            self.realSize -= 1
-            return
+        # if self.realSize > self.heapSize:
+        #     print("Added too many elements!")
+        #     self.realSize -= 1
+        #     return
         # Add the element into the array
-        self.minheap[self.realSize] = element
+        self.minheap.append(element)
         # Index of the newly added element
-        index = self.realSize
+        index = self.heapSize
         # Parent node of the newly added element
         # Note if we use an array to represent the complete binary tree
         # and store the root node at index 1
