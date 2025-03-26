@@ -3,7 +3,7 @@ import math
 
 class MinHeap:
     
-    def __init__(self, heapSize, array):
+    def __init__(self, heapSize: int, array: list[int]):
         # Create a complete binary tree using an array
         # Then use the binary tree to construct a Heap
         if heapSize + 1 != len(array):
@@ -26,18 +26,27 @@ class MinHeap:
         left = smallest * 2
         right = smallest * 2 + 1
 
-        if left > self.heapSize or right > self.heapSize:
+        if left > self.heapSize:
             return
-
-        if self.minheap[smallest] > self.minheap[left] or self.minheap[smallest] > self.minheap[right] :
-            if self.minheap[left] >= self.minheap[right] :
-                self.minheap[smallest], self.minheap[right] = self.minheap[right], self.minheap[smallest]
-                
-                self.heapify(right)
+        
+        # 倒数第二行
+        elif right > self.heapSize:
+            if self.minheap[smallest] > self.minheap[left]:
+                self.minheap[smallest], self.minheap[left] = self.minheap[left], self.minheap[smallest] 
+                return
             else:
-                self.minheap[smallest], self.minheap[left] = self.minheap[left], self.minheap[smallest]
-                
-                self.heapify(left)
+                return
+            
+        else:
+            if self.minheap[smallest] > self.minheap[left] or self.minheap[smallest] > self.minheap[right] :
+                if self.minheap[left] >= self.minheap[right] :
+                    self.minheap[smallest], self.minheap[right] = self.minheap[right], self.minheap[smallest]
+                    
+                    self.heapify(right)
+                else:
+                    self.minheap[smallest], self.minheap[left] = self.minheap[left], self.minheap[smallest]
+                    
+                    self.heapify(left)
             
         
 
@@ -91,6 +100,7 @@ class MinHeap:
             removeElement = self.minheap[1]
             # Put the last element in the Heap to the top of Heap
             self.minheap[1] = self.minheap[self.heapSize]
+            self.minheap.pop()
             self.heapSize -= 1
             index = 1
             # When the deleted element is not a leaf node
@@ -99,18 +109,30 @@ class MinHeap:
                 left = index * 2
                 # the right child of the deleted element
                 right = (index * 2) + 1
+
+                if left > self.heapSize:
+                    break
+
+                elif right > self.heapSize:
+                    if self.minheap[index] > self.minheap[left]:
+                        self.minheap[left], self.minheap[index] = self.minheap[index], self.minheap[left]
+                        break
+                    else:
+                        break                 
+
                 # If the deleted element is larger than the left or right child
                 # its value needs to be exchanged with the smaller value
                 # of the left and right child
-                if (self.minheap[index] > self.minheap[left] or self.minheap[index] > self.minheap[right]):
-                    if self.minheap[left] < self.minheap[right]:
-                        self.minheap[left], self.minheap[index] = self.minheap[index], self.minheap[left]
-                        index = left
+                else:    
+                    if (self.minheap[index] > self.minheap[left] or self.minheap[index] > self.minheap[right]):
+                        if self.minheap[left] < self.minheap[right]:
+                            self.minheap[left], self.minheap[index] = self.minheap[index], self.minheap[left]
+                            index = left
+                        else:
+                            self.minheap[right], self.minheap[index] = self.minheap[index], self.minheap[right]
+                            index = right
                     else:
-                        self.minheap[right], self.minheap[index] = self.minheap[index], self.minheap[right]
-                        index = right
-                else:
-                    break
+                        break
             return removeElement
     
     # o(1)
@@ -150,10 +172,13 @@ if __name__ == "__main__":
         print(minHeap.peek())
         # 1
         print(minHeap.pop())
+        print(minHeap.minheap)
         # 2
         print(minHeap.pop())
+        print(minHeap.minheap)
         # 3
         print(minHeap.pop())
+        print(minHeap.minheap)
         minHeap.add(4)
         minHeap.add(5)
         # [4,5]
