@@ -1,30 +1,19 @@
-
+# Find the ones
 def findMaxConsecutiveOnes(nums: list[int]) -> int:
-    maxNum = [0]
-    lastValue = nums[0]
-    currentMax = 1
-
-    if len(nums) == 1:
-        return 0
+    maxNum = []
+    currentMax = 0
 
     for i, currentValue in enumerate(nums):
-        #print(lastValue)
-        
-        if lastValue == nums[i]:
-            if i != 0:
-                currentMax += 1
-            if i == len(nums) - 1:
-                maxNum.append(currentMax)
-            # else:
-            #     currentMax
-        else:
+        if currentValue == 0:
             maxNum.append(currentMax)
-            currentMax = 1
-            maxNum.append(1)
+            currentMax = 0
+        else:
+            currentMax += 1
 
+        if i == len(nums) - 1:
+            maxNum.append(currentMax)
 
-        lastValue = nums[i]
-
+    print(maxNum)
     return  max(maxNum)
 
-print(findMaxConsecutiveOnes([0]))
+print(findMaxConsecutiveOnes([1,0,1,1,0,1]))
