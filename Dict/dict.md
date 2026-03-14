@@ -1,3 +1,22 @@
+八、增删改查
+1. 查
+d = {"a": 1, "b": 2}
+print(d["a"])   # 1
+
+但如果 key 不存在，会报错：
+
+print(d["c"])   # KeyError
+2. 更安全地查：get
+print(d.get("a"))      # 1
+print(d.get("c"))      # None
+print(d.get("c", 0))   # 0
+
+所以：
+
+d["key"]：必须存在，不然报错
+
+d.get("key")：不存在也没事
+
 十、遍历 dict
 1. 遍历 key
 d = {"a": 1, "b": 2, "c": 3}
@@ -90,6 +109,7 @@ print(groups)
 结果：
 
 {'a': ['apple', 'ant'], 'b': ['banana', 'book']}
+
 十三、刷题里最常见的三种 dict 写法
 写法 1：普通计数
 count = {}
