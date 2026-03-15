@@ -13,14 +13,29 @@ root.right.left = TreeNode(6)
 root.right.left.left = TreeNode(7)
 
 
-def dfs_tree(node):
+def dfs_tree_preorder(node):
      if not node:
           return
 
      print(node.val)
 
-     dfs_tree(node.left)
-     dfs_tree(node.right)
+     dfs_tree_preorder(node.left)
+     dfs_tree_preorder(node.right)
+
+def dfs_tree_inorder(node):
+     if not node:
+          return
+     dfs_tree_inorder(node.left)
+     print(node.val)
+     dfs_tree_inorder(node.right)
+
+def dfs_tree_postorder(node):
+     if not node:
+          return
+     dfs_tree_postorder(node.left)
+
+     dfs_tree_postorder(node.right)
+     print(node.val)
 
 
-dfs_tree(root)
+dfs_tree_postorder(root)
