@@ -15,6 +15,20 @@ def dfs(grid, r, c):
      dfs(grid, r, c - 1)
      dfs(grid, r, c + 1)
 
+# 脑子里要有这个固定框架：
+
+# for r in range(rows):
+#     for c in range(cols):
+#         if 满足起点条件:
+#             dfs/bfs(...)
+
+
+# 也就是：
+
+# 外层双循环找起点
+
+# 内层 DFS/BFS 扩散
+
 def numIslands(grid):
     rows, cols = len(grid), len(grid[0])
     count = 0
@@ -28,9 +42,11 @@ def numIslands(grid):
     return count
 
 grid = [
-  ["1","1","0","0","0"],
-  ["1","1","0","0","0"],
+  ["0","1","0","0","1"],
+  ["1","1","1","0","0"],
   ["0","0","1","0","0"],
-  ["0","0","0","1","1"]
+  ["1","1","1","1","1"],
+  ["0","0","0","0","0"]
 ]
+
 print(numIslands(grid))
