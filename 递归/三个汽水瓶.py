@@ -25,5 +25,7 @@ for line in sys.stdin:
     if true_result == 0:
          print(None)
     print(true_result)
+
+    
     
 
