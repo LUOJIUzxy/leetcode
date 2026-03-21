@@ -7,6 +7,10 @@ codes for leetcode exercises
 - 既看位置又看元素，用 enumerate
 - 真要按位置操作，再用 range(len(xs))
 
+### 字符串拼接
+- 多次收集字符，用 list.append()
+- 最后生成字符串，用 ''.join(list)
+
 ## Data Structures
 
 ### Heap 
