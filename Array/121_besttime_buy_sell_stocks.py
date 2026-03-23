@@ -17,4 +17,18 @@ class Solution:
         return max_daily_profit
 
 
-         
+from math import inf
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int :
+        result = 0
+        min_buy = inf
+
+        for price in prices:
+            min_buy = min(min_buy, price)
+            result = max(result, price - min_buy)
+
+        return result
+
+
+          
