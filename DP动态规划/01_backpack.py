@@ -8,12 +8,12 @@ def backpack_01(weights, values, W):
      for i in range(1, n + 1):
           w = weights[i - 1] #按照数组下标，当前的weight
           v = values[i - 1]
-          # j 为背包剩余容量
+          # j 为当前背包容量
           for j in range(W + 1):
                if j < w:
                     dp[i][j] = dp[i - 1][j]
                else:
-                    
+
                     dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - w] + v)
           
      return dp[n][W]
